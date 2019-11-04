@@ -2,15 +2,18 @@ from tqdm import tqdm
 import pandas as pd
 import re
 
-df = pd.read_csv('data/emails.csv',nrows=1000)
-splitter = re.compile('[^.!?].*[.!?]')
+df = pd.read_csv('data/emails.csv',nrows=5000)
 
+splitter = re.compile('[^.!?]*[\w]\s*[.!?]')
+bow = {}
+sentences = []
 total_count = 0
+actionable_sentences = 0;
+LIMIT = 1000 #for reducing ram memory consumption
 
-# Classifies whether a sentence is actionable or not!
 def is_actionable(query):
 	query = query.lower()
-	words = ['?','can you ','would you','should ','please ', 'will you ']
+	words = ['?','can you ','would you','should ','please ', 'will you ', 'could you ', 'what are ', 'what is ','who ',' how do ']
 	for word in words:
 		if word in query:
 			return True
@@ -33,12 +36,22 @@ for k in tqdm(range(len(df))):
 	for s in sents_k:
 		if is_actionable(s.strip()):
 			sentences.append(s.strip())
+	if len(sentences) > LIMIT:
+		save_results = open('save_results.txt','a+')
+		actionable_sentences+=len(sentences)
+		print('Results Saved for ' + str(len(sentences)) + ' lines.')
+		results = '\n'.join(sentences)
+		save_results.write(results)
+		save_results.close()
+		sentences = []
 
-# File Saving
-results = '\n'.join(sentences)
 save_results = open('./outputs/save_results.txt','a+')
+actionable_sentences+=len(sentences)
+print('Results Saved for ' + str(len(sentences)) + ' lines.')
+results = '\n'.join(sentences)
 save_results.write(results)
 save_results.close()
-print('Actionable Sentences : ' + str(len(sentences)))
-print('Total Sentences : ', total_count)
 
+
+print('Number of Actionable Sentences : ', actionable_sentences)
+print('Total Sentences : ', total_count)
