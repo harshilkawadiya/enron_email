@@ -10,15 +10,12 @@ Aim to Create a heuristics-based linguistic model for detecting actionable items
 
 ### Prerequisites
 
-Python 3, Pandas,tqdm
+Python 3, Pandas,tqdm, NLTK
 
 ### Installing
-'''
-conda install pandas
-'''
-'''
-conda install tqdm
-'''
+
+Follow the commands in requirements.txt
+
 ### Directory Structure and Important Files
 
 '''
