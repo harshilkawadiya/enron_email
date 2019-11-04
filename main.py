@@ -2,7 +2,7 @@ from tqdm import tqdm
 import pandas as pd
 import re
 
-df = pd.read_csv('data/emails.csv',nrows=5000)
+df = pd.read_csv('data/emails.csv',nrows=10000)
 
 splitter = re.compile('[^.!?]*[\w]\s*[.!?]')
 bow = {}
@@ -31,19 +31,23 @@ def get_message(colln,idx):
 sentences = []
 
 for k in tqdm(range(len(df))):
-	sents_k = get_message(df,k)
-	total_count+=len(sents_k)
-	for s in sents_k:
-		if is_actionable(s.strip()):
-			sentences.append(s.strip())
-	if len(sentences) > LIMIT:
-		save_results = open('save_results.txt','a+')
-		actionable_sentences+=len(sentences)
-		print('Results Saved for ' + str(len(sentences)) + ' lines.')
-		results = '\n'.join(sentences)
-		save_results.write(results)
-		save_results.close()
-		sentences = []
+	try:
+		sents_k = get_message(df,k)
+		total_count+=len(sents_k)
+		for s in sents_k:
+			if is_actionable(s.strip()):
+				sentences.append(s.strip())
+		if len(sentences) > LIMIT:
+			save_results = open('save_results.txt','a+')
+			actionable_sentences+=len(sentences)
+			print('Results Saved for ' + str(len(sentences)) + ' lines.')
+			results = '\n'.join(sentences)
+			save_results.write(results)
+			save_results.close()
+			sentences = []
+	except:
+		print('Message Not Retrieved')
+
 
 save_results = open('./outputs/save_results.txt','a+')
 actionable_sentences+=len(sentences)
