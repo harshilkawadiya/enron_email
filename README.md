@@ -42,4 +42,5 @@ python main.py
 
 ### Evaluation
 
-Usage of precision and recall for evaluation and using pos tagger patterns .
+Usage of precision and recall for evaluation and using POS tagger patterns .
+
