@@ -10,12 +10,13 @@ Aim to Create a heuristics-based linguistic model for detecting actionable items
 
 ### Prerequisites
 
-Python 3, Pandas
+Python 3, Pandas,tqdm
 
 ### Installing
-
+'''
 conda install pandas
-
+conda install tqdm
+'''
 ### Directory Structure and Important Files
 
 ./data/ : Email Data is stored in this folder. Not uploading on github. You can download directly from Kaggle Link.
