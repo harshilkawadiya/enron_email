@@ -8,26 +8,38 @@ Kaggle Dataset Containing Emails and other meta-information
 Aim to Create a heuristics-based linguistic model for detecting actionable items from the email. A rule-based model to classify sentences to actionable sentence and non-actionable sentence
 
 
-### Prerequisites
+### Packages Required
+```
+pandas
+tqdm
+nltk
+```
 
-Python 3, Pandas,tqdm, NLTK
-
-### Installing
-
-Follow the commands in requirements.txt
 
 ### Directory Structure and Important Files
 
-'''
-./data/ : Email Data is stored in this folder. Not uploading on github. You can download directly from Kaggle Link.
-'''
-'''
-./outputs/ : Save the output in this folder
-'''
-'''
-main.py : Python Code for main file.
-'''
-### How to Run?
 ```
+./data/ : Email Data is stored in this folder. Not uploading on github. You can download directly from Kaggle Link.
+./outputs/ : Save the output in this folder
+main.py : Python Code for main file.
+```
+
+## Installation
+
+Use the Anaconda with Python3 Environment
+
+```bash
+conda install pandas
+conda install tqdm
+conda install nltk
+```
+
+## Usage
+
+```python
 python main.py
 ```
+
+### Evaluation
+
+Use for precision and recall for evaluation.
