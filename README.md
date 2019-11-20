@@ -7,6 +7,16 @@ Kaggle Dataset Containing Emails and other meta-information
 
 Aim to Create a heuristics-based linguistic model for detecting actionable items from the email. A rule-based model to classify sentences to actionable sentence and non-actionable sentence
 
+## Functionalities (Part 2)
+
+Train a model to detect whether a given sentence is an actionable item or not. 
+
+```
+Actionable item => A sentence which asks someone to do something
+example: "Please create an assignment and forward it by EOD"
+```
+
+
 
 ### Packages Required
 ```
@@ -43,4 +53,6 @@ python main.py
 ### Evaluation
 
 Usage of precision and recall for evaluation and using POS tagger patterns .
+
+
 
