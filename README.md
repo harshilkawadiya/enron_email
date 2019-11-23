@@ -42,6 +42,7 @@ Use the Anaconda with Python3 Environment
 conda install pandas
 conda install tqdm
 conda install nltk
+conda install pytorch torchvision cudatoolkit=9.2 -c pytorch
 ```
 
 ## Usage
