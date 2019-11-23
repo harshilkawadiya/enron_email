@@ -11,8 +11,6 @@ class VecsBuilder(object):
 		data = open(self.feature_path,'r+')
 		for line in data:
 			count+=1
-			if count>1000:
-				break
 			key = line.split()[0]
 			_feature = line.split()[1:]
 			vec = list(map(lambda x:float(x),_feature))

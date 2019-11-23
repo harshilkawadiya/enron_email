@@ -1,6 +1,8 @@
+import re
 import torch
 import numpy as np
 import nltk
+r = re.compile('[a-zA-Z0-9]+')
 class Loader(object):
     def __init__(self, max_length,vocab,subset='train'):
         self.samples = []
@@ -9,8 +11,8 @@ class Loader(object):
         self.vocab = vocab
         self.max_length = max_length
         if subset=='train':
-            self.add_data('./actions.txt',1)
-            self.add_data('./non_actions.txt',0)
+            self.add_data('./actions_train.txt',1)
+            self.add_data('./non_actions_train.txt',0)
         else:
             self.add_data('./actions_val.txt',1)
             self.add_data('./non_actions_val.txt',0)            
@@ -33,8 +35,9 @@ class Loader(object):
         s = sentence.lower()
         tokens = nltk.tokenize.word_tokenize(s)
         sent = []
-        # print(tokens)
-        for word in tokens:
+        filtering = filter(r.match, tokens)
+        filtered_tokens = [k for k in filtering]
+        for word in filtered_tokens:
             if word in vocab:
                 sent.append(vocab[word])
             else:
@@ -56,3 +59,7 @@ class Loader(object):
         target = torch.Tensor([self.labels[idx]]).long()
         # print(target)
         return sentence,target
+
+    def __len__(self):
+        return self.num_samples
+
